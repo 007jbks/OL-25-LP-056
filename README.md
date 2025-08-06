@@ -40,12 +40,13 @@ streamlit_app.py
 
 ## 🔗 Important Links
 
--   **EDA Notebook:** `https://www.kaggle.com/code/kartiksirohi/capstone-eda`
--   **Classification Notebook:** `https://www.kaggle.com/code/kartiksirohi/ol-classification`
--   **Regression Notebook:** `https://www.kaggle.com/code/kartiksirohi/ol-regression`
--   **Clustering Notebook:** `https://www.kaggle.com/code/kartiksirohi/ol-clustering`
--   **Streamlit App:** `https://amazycb7jbdugwjiuhfoht.streamlit.app/`
--   **Technical Report:** `[Link to Medium Blog]`
+- **EDA Notebook:** [Click here to view](https://www.kaggle.com/code/kartiksirohi/capstone-eda)
+- **Classification Notebook:** [Click here to view](https://www.kaggle.com/code/kartiksirohi/ol-classification)
+- **Regression Notebook:** [Click here to view](https://www.kaggle.com/code/kartiksirohi/ol-regression)
+- **Clustering Notebook:** [Click here to view](https://www.kaggle.com/code/kartiksirohi/ol-clustering)
+- **Streamlit App:** [Click here to view](https://amazycb7jbdugwjiuhfoht.streamlit.app/)
+- **Technical Report:** [Click here to view](https://medium.com/@kartik.orion.dev/the-open-learn-journey-4f7251d015cd)
+
 
 ---
 
