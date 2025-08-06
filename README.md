@@ -65,7 +65,9 @@ streamlit_app.py
 <img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/7397eca8-5194-4e0d-b88b-9f6e2d929e54" />
 ---
 ## Acknowledgements
+```
 Dataset Source: Mental Health in Tech Survey
 OpenLearn Cohort 1.0 Mentors & Team
+```
 
 ---
