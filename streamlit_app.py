@@ -129,9 +129,6 @@ if section == "EDA":
             📌 This pie chart shows how **self-employed** individuals report the frequency with which their work interferes with their **mental health**.
             """)
 
-# -------------------------------
-# Your Regression, Classification, Clustering code goes here later:
-# -------------------------------
 
 # Preprocessing
 df = pd.read_csv('survey.csv')
@@ -152,7 +149,6 @@ m = {
 }
 df['work_interfere'] = df['work_interfere'].map(m)
 df['leave'].unique()
-# Higher numbers mean an easier leave policy
 leave_map = {
     'Very easy': 4,
     'Somewhat easy': 3,
@@ -351,10 +347,8 @@ if section == "Regression":
     from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
     from sklearn.ensemble import RandomForestRegressor
 
-    # Train test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.2)
 
-    # Train both models upfront
     lr_model = LinearRegression()
     lr_model.fit(X_train, y_train)
     lr_preds = lr_model.predict(X_test)
@@ -363,7 +357,6 @@ if section == "Regression":
     rf_model.fit(X_train, y_train)
     rf_preds = rf_model.predict(X_test)
 
-    # Calculate metrics function
     def calc_metrics(y_true, y_pred):
         mae = mean_absolute_error(y_true, y_pred)
         rmse = np.sqrt(mean_squared_error(y_true, y_pred))
@@ -373,7 +366,6 @@ if section == "Regression":
     lr_mae, lr_rmse, lr_r2 = calc_metrics(y_test, lr_preds)
     rf_mae, rf_rmse, rf_r2 = calc_metrics(y_test, rf_preds)
 
-    # Streamlit UI starts here
     st.header("Regression Models: Predict Age")
 
     model_choice = st.selectbox("Choose Regression Model", ["Linear Regression", "Random Forest"])
@@ -403,10 +395,8 @@ if section == "Regression":
         'coworkers': {'No': -1, 'Some of them': 0, 'Yes': 1},
     }
 
-    # List of all features used by model
     all_features = X.columns.tolist()
 
-    # Create input widgets for the features you want user to specify
 
     gender_input = st.selectbox("Gender", options=['M', 'F'], index=0)
     treatment_input = st.selectbox("Received Treatment", options=['No', 'Yes'], index=1)
@@ -416,7 +406,6 @@ if section == "Regression":
     obs_consequence_input = st.selectbox("Observed Consequence", options=['No', 'Yes'], index=0)
     coworkers_input = st.selectbox("Coworkers Support", options=['No', 'Some of them', 'Yes'], index=2)
 
-    # Gather inputs into dict
     user_inputs = {
         'Gender': gender_input,
         'mental_health_interview': mental_health_interview_input,
@@ -427,17 +416,15 @@ if section == "Regression":
         'coworkers': coworkers_input,
     }
 
-    # Build input row for prediction
     input_dict = {}
     for feature in all_features:
         if feature in user_inputs:
             val = user_inputs[feature]
             if feature in maps:
-                input_dict[feature] = maps[feature].get(val, df[feature].mode()[0])  # fallback to mode if missing key
+                input_dict[feature] = maps[feature].get(val, df[feature].mode()[0])  
             else:
                 input_dict[feature] = val
         else:
-            # Fill other features not provided by user
             if pd.api.types.is_numeric_dtype(df[feature]):
                 input_dict[feature] = df[feature].mean()
             else:
@@ -445,7 +432,6 @@ if section == "Regression":
 
     input_df = pd.DataFrame([input_dict])
 
-    # Predict based on selected model
     if model_choice == "Linear Regression":
         predicted_age = lr_model.predict(input_df)[0]
     else:
@@ -463,18 +449,14 @@ if section == "Classification":
     from sklearn.svm import SVC
     from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
 
-    # Prepare data (encode categorical as needed)
     y = df['treatment']
     X = df.drop(['treatment'], axis=1)
 
-    # For simplicity, encode categorical columns (if any) via get_dummies here
     X_encoded = pd.get_dummies(X, drop_first=True)
 
-    # Train test split
     X_train, X_test, y_train, y_test = train_test_split(
         X_encoded, y, test_size=0.4, random_state=42)
 
-    # Initialize models upfront
     models = {
         "Logistic Regression": LogisticRegression(max_iter=10000),
         "Random Forest": RandomForestClassifier(),
@@ -482,15 +464,12 @@ if section == "Classification":
         "Support Vector Machine": SVC(probability=True),
     }
 
-    # Train all models upfront
     for model_name, model in models.items():
         model.fit(X_train, y_train)
 
-    # Model selection in UI
     model_choice = st.selectbox("Choose Classification Model", list(models.keys()))
     model = models[model_choice]
 
-    # Predictions and metrics on test set
     y_pred = model.predict(X_test)
     y_pred_proba = model.predict_proba(X_test)[:, 1]
 
@@ -504,23 +483,15 @@ if section == "Classification":
 
     st.markdown("---")
 
-    # Prepare user input for prediction (choose a few key features)
     st.subheader("Predict Treatment for Custom Input")
 
-    # You can choose key features to input; here are some examples:
-    # Use features from your dataset, e.g. 'Gender', 'mental_health_interview', 'phys_health_interview', etc.
-
-    # For features that are in X_encoded after get_dummies, you need to know them.
-    # To keep it simple, let’s use your original columns and map values manually, then convert to the encoded format.
-
-    # Key features for user input (adjust to your dataset)
+ 
     gender_input = st.selectbox("Gender", ['M', 'F'])
     mental_health_interview_input = st.selectbox("Mental Health Interview", ['No', 'Maybe', 'Yes'])
     phys_health_interview_input = st.selectbox("Physical Health Interview", ['No', 'Maybe', 'Yes'])
     mental_vs_physical_input = st.selectbox("Mental vs Physical", ['No', "Don't know", 'Yes'])
     coworkers_input = st.selectbox("Coworkers Support", ['No', 'Some of them', 'Yes'])
 
-    # Mapping similar to training
     maps = {
         'Gender': {'M': 1, 'F': 0},
         'mental_health_interview': {'No': -1, 'Maybe': 0, 'Yes': 1},
@@ -529,7 +500,6 @@ if section == "Classification":
         'coworkers': {'No': -1, 'Some of them': 0, 'Yes': 1},
     }
 
-    # Build input dict with all features of X columns filled with mode or mean by default
     input_dict = {}
 
     for feature in X.columns:
@@ -544,23 +514,19 @@ if section == "Classification":
         elif feature == 'coworkers':
             input_dict[feature] = maps['coworkers'][coworkers_input]
         else:
-            # Fill missing features with mode or mean depending on dtype
             if df[feature].dtype in [np.float64, np.int64]:
                 input_dict[feature] = df[feature].mean()
             else:
                 input_dict[feature] = df[feature].mode()[0]
 
-    # Convert input_dict to dataframe, then apply same encoding as training
     input_df = pd.DataFrame([input_dict])
     input_encoded = pd.get_dummies(input_df, drop_first=True)
 
-    # Ensure all columns are in input_encoded as in training (add missing with 0)
     for col in X_encoded.columns:
         if col not in input_encoded.columns:
             input_encoded[col] = 0
     input_encoded = input_encoded[X_encoded.columns]  # reorder to match
 
-    # Predict
     user_pred = model.predict(input_encoded)[0]
     user_pred_proba = model.predict_proba(input_encoded)[0, 1]
 
@@ -576,7 +542,6 @@ from sklearn.metrics import silhouette_score
 if section == "Clustering":
     st.header("KMeans Clustering with User-Selected Features")
 
-    # List of all features available for clustering (categorical or categorical-like)
     available_features = [
         'family_history',
         'treatment',
@@ -593,7 +558,6 @@ if section == "Clustering":
         'obs_consequence'
     ]
 
-    # User selects features to cluster on
     selected_features = st.multiselect(
         "Select features for clustering (at least 2)",
         options=available_features,
@@ -603,33 +567,26 @@ if section == "Clustering":
     if len(selected_features) < 2:
         st.warning("Please select at least two features for clustering.")
     else:
-        # Extract selected features
         X = df[selected_features]
 
-        # One-hot encode categorical features
         encoder = OneHotEncoder(sparse_output=False)
 
         X_encoded = encoder.fit_transform(X)
 
-        # User selects number of clusters
         n_clusters = st.slider("Select number of clusters (k)", min_value=2, max_value=10, value=2)
 
-        # Fit KMeans
         kmeans = KMeans(n_clusters=n_clusters, random_state=42)
         kmeans.fit(X_encoded)
 
-        # Assign cluster labels to dataframe
         df['cluster'] = kmeans.labels_
 
-        # Silhouette score
         score = silhouette_score(X_encoded, kmeans.labels_)
         st.write(f"Silhouette Score: **{score:.4f}**")
 
-        # PCA to reduce to 2D for plotting
         pca = PCA(n_components=2)
         X_pca = pca.fit_transform(X_encoded)
 
-        # Plot PCA scatter with cluster colors
+   
         fig, ax = plt.subplots(figsize=(8, 6))
         scatter = ax.scatter(X_pca[:, 0], X_pca[:, 1], c=kmeans.labels_, cmap='viridis', s=40)
         ax.set_title('Clusters Visualized by PCA Components 1 & 2')
