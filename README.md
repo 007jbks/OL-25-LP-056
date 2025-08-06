@@ -49,24 +49,17 @@ To understand the key factors influencing mental health issues among employees i
 
 
 ### Screenshots
-**EDA Insight**
-<img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/afda7ea7-c115-497b-a214-cb392553e66c" />
-**Regression**
-<img width="1919" height="994" alt="image" src="https://github.com/user-attachments/assets/70a65f96-e4b7-4b7b-8671-ff9989af89c6" />
-
-<img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/f357b812-c48f-45de-ae9e-94fa8613ca54" />
-
-<img width="1919" height="999" alt="image" src="https://github.com/user-attachments/assets/0bc87f71-a14b-4b48-aa79-6ac7240a8c36" />
-<img width="1919" height="1006" alt="image" src="https://github.com/user-attachments/assets/62d01d4d-b1a0-4dbd-bd8b-c5bb703d329c" />
-<img width="1919" height="1005" alt="image" src="https://github.com/user-attachments/assets/3000872e-8873-449f-a120-d9bc3b96c288" />
-
-**Dashboard Overview**
-
-
 **EDA Insights**
+<img width="1919" height="1006" alt="image" src="https://github.com/user-attachments/assets/11656ad6-c94a-4471-827f-94bf75a9b121" />
 
+**Regression**
+<img width="1919" height="994" alt="image" src="https://github.com/user-attachments/assets/a860da1c-784a-4e9a-a5af-164d9ab9fd82" />
 
-**Model Results**
+**Classification**
+<img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/723d9d04-b894-4600-9faf-b01863a2859c" />
+
+**Clustering**
+<img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/7397eca8-5194-4e0d-b88b-9f6e2d929e54" />
 
 
 ---
