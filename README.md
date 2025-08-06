@@ -27,12 +27,16 @@ To understand the key factors influencing mental health issues among employees i
 ---
 
 ## 📂 Project Structure
-── models/
-│   ├── regression.py
-│   ├── classification.py
-│   └── clustering.py
-├── requirements.txt
-└── streamlit_app.py
+To display the project structure on multiple lines correctly, you need to wrap it in a Markdown code block. This ensures that the whitespace and line breaks are preserved.
+
+Here is the corrected formatting:
+
+models/
+├── regression.py
+├── classification.py
+└── clustering.py
+requirements.txt
+streamlit_app.py
 --
 
 ## 🔗 Important Links
@@ -61,5 +65,8 @@ To understand the key factors influencing mental health issues among employees i
 **Clustering**
 <img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/7397eca8-5194-4e0d-b88b-9f6e2d929e54" />
 
+**Acknowledgements**
+Dataset Source: Mental Health in Tech Survey
+OpenLearn Cohort 1.0 Mentors & Team
 
 ---
