@@ -8,10 +8,10 @@ from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
-# Load dataset once
+
 df = pd.read_csv('survey.csv')
 
-# Sidebar navigation with only EDA
+
 section = st.sidebar.radio(
     "Select Section",
     [
