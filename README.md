@@ -27,16 +27,15 @@ To understand the key factors influencing mental health issues among employees i
 ---
 
 ## 📂 Project Structure
-To display the project structure on multiple lines correctly, you need to wrap it in a Markdown code block. This ensures that the whitespace and line breaks are preserved.
-
-Here is the corrected formatting:
-
+```
 models/
 ├── regression.py
 ├── classification.py
 └── clustering.py
 requirements.txt
 streamlit_app.py
+```
+
 ---
 
 ## 🔗 Important Links
